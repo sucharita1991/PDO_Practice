@@ -10,10 +10,18 @@ try {
     echo 'Connection failed: ' . $e->getMessage().'</br>';
 }
 
-$sql = "Select * from accounts where id<6";
+//$sql = "Select * from accounts where id<6";
 try {
 
-    $dbh->exec($sql);
+    //$dbh->exec($sql);
+
+    $statement = $dbh->prepare('SELECT * FROM accounts where ID<6');
+    $statement->execute();
+    while($result = $statement->fetch(PDO::FETCH_OBJ)) {
+        $results[] = $result;
+    }
+    echo 'Number of records: '.count($results).'</br>';
+    
 
 } catch (PDOException $e) {
     echo $sql . "<br>" . $e->getMessage();
