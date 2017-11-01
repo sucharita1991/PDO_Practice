@@ -9,4 +9,13 @@ try {
 } catch (PDOException $e) {
     echo 'Connection failed: ' . $e->getMessage().'</br>';
 }
+
+$sql = "Select * from accounts where id<6";
+try {
+
+    $dbh->exec($sql);
+
+} catch (PDOException $e) {
+    echo $sql . "<br>" . $e->getMessage();
+}
 ?>
